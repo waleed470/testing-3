@@ -1,0 +1,22 @@
+service: test-app-part1
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: test
+  region: us-east-1
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+
+  status:
+    handler: handler.status
+    events:
+      - http:
+          path: status
+          method: get

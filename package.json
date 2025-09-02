@@ -1,0 +1,12 @@
+{
+  "name": "test-serverless-app",
+  "version": "1.0.0",
+  "description": "Test app for GitHub Actions workflow",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Test completed\""
+  },
+  "devDependencies": {
+    "serverless": "^3.0.0"
+  }
+}

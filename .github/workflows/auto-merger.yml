@@ -1,0 +1,153 @@
+name: Sequential Auto Merge
+
+on:
+  workflow_dispatch:  # Manual trigger
+  push:
+    branches: [merge-trigger]  # Sirf merge-trigger branch pe chalega
+
+jobs:
+  # Pehle dev se f1 merge hoga
+  merge_to_f1:
+    name: Merge Dev → F1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F1
+        run: |
+          echo "🔄 MERGING DEV → F1"
+          sleep 5
+          echo "✅ DEV → F1 MERGE COMPLETED"
+
+  # F1 merge complete hone ke baad f2 merge hoga
+  merge_to_f2:
+    name: Merge Dev → F2
+    runs-on: ubuntu-latest
+    needs: merge_to_f1  # F1 merge complete hone ka wait karega
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F2
+        run: |
+          echo "🔄 MERGING DEV → F2"
+          sleep 5
+          echo "✅ DEV → F2 MERGE COMPLETED"
+
+  # F2 merge complete hone ke baad f3 merge hoga
+  merge_to_f3:
+    name: Merge Dev → F3
+    runs-on: ubuntu-latest
+    needs: merge_to_f2
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F3
+        run: |
+          echo "🔄 MERGING DEV → F3"
+          sleep 5
+          echo "✅ DEV → F3 MERGE COMPLETED"
+
+  # F3 merge complete hone ke baad f4 merge hoga
+  merge_to_f4:
+    name: Merge Dev → F4
+    runs-on: ubuntu-latest
+    needs: merge_to_f3
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F4
+        run: |
+          echo "🔄 MERGING DEV → F4"
+          sleep 5
+          echo "✅ DEV → F4 MERGE COMPLETED"
+
+  # F4 merge complete hone ke baad f5 merge hoga
+  merge_to_f5:
+    name: Merge Dev → F5
+    runs-on: ubuntu-latest
+    needs: merge_to_f4
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F5
+        run: |
+          echo "🔄 MERGING DEV → F5"
+          sleep 5
+          echo "✅ DEV → F5 MERGE COMPLETED"
+
+  # F5 merge complete hone ke baad f6 merge hoga
+  merge_to_f6:
+    name: Merge Dev → F6
+    runs-on: ubuntu-latest
+    needs: merge_to_f5
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F6
+        run: |
+          echo "🔄 MERGING DEV → F6"
+          sleep 5
+          echo "✅ DEV → F6 MERGE COMPLETED"
+
+  # F6 merge complete hone ke baad f7 merge hoga
+  merge_to_f7:
+    name: Merge Dev → F7
+    runs-on: ubuntu-latest
+    needs: merge_to_f6
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F7
+        run: |
+          echo "🔄 MERGING DEV → F7"
+          sleep 5
+          echo "✅ DEV → F7 MERGE COMPLETED"
+
+  # F7 merge complete hone ke baad f8 merge hoga
+  merge_to_f8:
+    name: Merge Dev → F8
+    runs-on: ubuntu-latest
+    needs: merge_to_f7
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F8
+        run: |
+          echo "🔄 MERGING DEV → F8"
+          sleep 5
+          echo "✅ DEV → F8 MERGE COMPLETED"
+
+  # F8 merge complete hone ke baad f9 merge hoga
+  merge_to_f9:
+    name: Merge Dev → F9
+    runs-on: ubuntu-latest
+    needs: merge_to_f8
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Merge Dev to F9
+        run: |
+          echo "🔄 MERGING DEV → F9"
+          sleep 5
+          echo "✅ DEV → F9 MERGE COMPLETED"
+
+  # Final Completion
+  all_merges_complete:
+    name: 🎉 All Merges Complete
+    runs-on: ubuntu-latest
+    needs: merge_to_f9
+    steps:
+      - name: All Sequential Merges Completed
+        run: |
+          echo "🎊 ALL MERGES COMPLETED SUCCESSFULLY!"
+          echo "✅ DEV → F1 → F2 → F3 → F4 → F5 → F6 → F7 → F8 → F9"
+          echo "📊 Sequential merging completed for all branches!"
